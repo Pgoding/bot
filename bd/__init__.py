@@ -1,1 +1,0 @@
-from bd import db_connect

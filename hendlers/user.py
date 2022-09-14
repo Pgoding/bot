@@ -4,9 +4,10 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher.filters import Text
 
+
 from config import bot, dp
 from kb import keyboards_user
-
+from db.db_connect import db_add
 
 
 # setting user
@@ -35,6 +36,15 @@ class FSMuser(StatesGroup):
 async def start_FSM(message : types.Message):
 	await FSMuser.photo.set()
 	await message.reply('Загрузи фото')
+# exit
+async def exite(message : types.Message, state : FSMContext):
+	current_state = await state.get_state()
+
+	if current_state is None:
+		return
+
+	await state.finish()
+	await message.reply('пока')
 # one
 async def load_photo(message : types.Message, state : FSMContext):
 	async with state.proxy() as data:
@@ -53,25 +63,17 @@ async def load_description(message : types.Message, state : FSMContext):
 		data['description'] = message.text
 	await FSMuser.next()
 	await message.reply('Назначть дату')
-# four
+# four finish
 async def load_data(message : types.Message, state : FSMContext):
 	async with state.proxy() as data:
 		data['load_data'] = message.text
 
-	async with state.proxy() as data:
-		await message.reply(str(data))
-
+	# async with state.proxy() as data:
+		# await message.reply(str(data))
+	await db_add(state)
+	await bot.send_message(message.from_user.id,'вы записаны')
 	await state.finish()
 
-# exit
-async def exite(message : types.Message, state : FSMContext):
-	current_state = await state.get_state()
-
-	if current_state is None:
-		return
-
-	await state.finish()
-	await message.reply('пока')
 
 
 

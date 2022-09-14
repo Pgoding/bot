@@ -8,6 +8,6 @@ b3 = KeyboardButton('Контактные данные')
 # b4 = KeyboardButton('pizda', request_location=True)
 
 
-kb_user = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+kb_user = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
 
 kb_user.row(b1,b2,b3)

@@ -2,11 +2,16 @@
 
 config.py
 
-/__pycache__
-
-
-data_user
+data_user.db
 
 user.cpython-310.pyc
 
 keyboards_user.cpython-310.pyc
+
+hendlers/__pycache__/
+
+/__pycache__
+
+kb/__pycache__/
+
+db/__pycache__/
