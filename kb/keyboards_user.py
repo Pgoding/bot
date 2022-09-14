@@ -1,7 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
-b1 = KeyboardButton('/help')
+b1 = KeyboardButton('help')
 b2 = KeyboardButton('Запись')
 b3 = KeyboardButton('Контактные данные')
 # b3 = KeyboardButton('XYI', request_contact=True)

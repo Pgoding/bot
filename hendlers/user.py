@@ -86,6 +86,7 @@ async def exite(message : types.Message, state : FSMContext):
 
 def register_hendler(dp : Dispatcher):
 	dp.register_message_handler(start_help, commands=['start','help'])
+	dp.register_message_handler(start_help, Text(equals='help', ignore_case=True))
 	dp.register_message_handler(contact, Text(equals='Контактные данные', ignore_case=True, ))
 	dp.register_message_handler(start_FSM, Text(equals='Запись', ignore_case=True, ), state=None)
 	dp.register_message_handler(load_photo, content_types=['photo'], state=FSMuser.photo )
